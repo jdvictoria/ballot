@@ -9,7 +9,10 @@ const StyledLabel = styled.div`
   width: 100%;
   height: 7.5%;
 
-  border-bottom: 2px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
 `
 
 const StyledText = styled.text`
