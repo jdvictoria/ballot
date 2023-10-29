@@ -12,12 +12,16 @@ const MainContainer = styled.div`
   right: 0;
   bottom: 0;
   
-  margin: 15px 15px 15px 15px;
+  margin: 20px 20px 20px 20px;
   
   background-color: white;
 
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='20' stroke-dasharray='10%2c 15' stroke-dashoffset='60' stroke-linecap='butt'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='25' stroke-dasharray='10%2c 15' stroke-dashoffset='60' stroke-linecap='butt'/%3e%3c/svg%3e");
 `
+
+const FormContainer = styled.div``
+
+const BallotContainer = styled.div``
 
 function App() {
   return (
