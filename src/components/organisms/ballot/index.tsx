@@ -2,10 +2,12 @@ import React from 'react';
 import styled from "styled-components";
 
 import {PositionLabel} from "../../molecules/position";
-import {VoteRadio} from "../../molecules/radio";
+import {VoteComponent} from "../../molecules/radio";
 
 import Presidents from '../../../data/presidents.json';
 import VicePresidents from '../../../data/vicepresidents.json';
+import Senators from '../../../data/senators.json';
+import PartyList from '../../../data/partylist.json';
 
 const BallotContainer = styled.div`
   justify-content: center;
@@ -42,15 +44,19 @@ const FillerLabel = styled.div`
 export function Ballot() {
     return (
         <BallotContainer>
-            <PositionLabel color={'#2071c1'} label={'PRESIDENT / Vote for 1'}></PositionLabel>
-            <VoteRadio name={'p'} data={Presidents.slice(0, 4)}/>
-            <VoteRadio name={'p'} data={Presidents.slice(4, 8)}/>
-            <PositionLabel color={'#51b052'} label={'VICE PRESIDENT / Vote for 1'}/>
-            <VoteRadio name={'vp'} data={VicePresidents.slice(0, 4)}/>
-            <VoteRadio name={'vp'} data={VicePresidents.slice(4, 8)}/>
-            <PositionLabel color={'#2071c1'} label={'SENATOR / Vote for 12'}/>
-
-            <PositionLabel color={'#51b052'} label={'PARTYLIST / Vote for 2'}/>
+            <PositionLabel color={'#2071c1'} label={'PRESIDENT'}></PositionLabel>
+            <VoteComponent type={'radio'} name={'p'} data={Presidents.slice(0, 4)}/>
+            <VoteComponent type={'radio'} name={'p'} data={Presidents.slice(4, 8)}/>
+            <PositionLabel color={'#51b052'} label={'VICE PRESIDENT'}/>
+            <VoteComponent type={'radio'} name={'vp'} data={VicePresidents.slice(0, 4)}/>
+            <VoteComponent type={'radio'} name={'vp'} data={VicePresidents.slice(4, 8)}/>
+            <PositionLabel color={'#2071c1'} label={'SENATOR'}/>
+            <VoteComponent type={'checkbox'} name={'sen'} data={Senators.slice(0, 4)}/>
+            <VoteComponent type={'checkbox'} name={'sen'} data={Senators.slice(4, 8)}/>
+            <VoteComponent type={'checkbox'} name={'sen'} data={Senators.slice(8, 12)}/>
+            <VoteComponent type={'checkbox'} name={'sen'} data={Senators.slice(12, 16)}/>
+            <PositionLabel color={'#51b052'} label={'PARTYLIST'}/>
+            <VoteComponent type={'checkbox'} name={'party'} data={PartyList.slice(0, 4)}/>
             <FillerLabel/>
         </BallotContainer>
     )

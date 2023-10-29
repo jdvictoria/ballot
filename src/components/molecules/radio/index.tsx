@@ -41,23 +41,23 @@ const StyledText = styled.text`
 `
 
 // @ts-ignore
-export function VoteRadio({name, data}) {
+export function VoteComponent({type, name, data}) {
     return (
         <StyledHolder>
             <StyledPlate>
-                <StyledInput type="radio" name={name} />
+                <StyledInput type={type} name={name} />
                 <StyledText>{data[0].name}</StyledText>
             </StyledPlate>
             <StyledPlate>
-                <StyledInput type="radio" name={name} />
+                <StyledInput type={type} name={name} />
                 <StyledText>{data[1].name}</StyledText>
             </StyledPlate>
             <StyledPlate>
-                <StyledInput type="radio" name={name} />
+                <StyledInput type={type} name={name} />
                 <StyledText>{data[2].name}</StyledText>
             </StyledPlate>
             <StyledPlate>
-                <StyledInput type="radio" name={name} />
+                <StyledInput type={type} name={name} />
                 <StyledText>{data[3].name}</StyledText>
             </StyledPlate>
         </StyledHolder>
