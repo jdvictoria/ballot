@@ -2,7 +2,10 @@ import React from 'react';
 import styled from "styled-components";
 
 import {PositionLabel} from "../../molecules/position";
-import {NamePlaceholder} from "../../molecules/name";
+import {VoteRadio} from "../../molecules/radio";
+
+import Presidents from '../../../data/presidents.json';
+import VicePresidents from '../../../data/vicepresidents.json';
 
 const BallotContainer = styled.div`
   justify-content: center;
@@ -39,19 +42,15 @@ const FillerLabel = styled.div`
 export function Ballot() {
     return (
         <BallotContainer>
-            <PositionLabel color={'#2071c1'} label={'PRESIDENT / Vote for 1'}/>
-            <NamePlaceholder/>
-            <NamePlaceholder/>
+            <PositionLabel color={'#2071c1'} label={'PRESIDENT / Vote for 1'}></PositionLabel>
+            <VoteRadio name={'p'} data={Presidents.slice(0, 4)}/>
+            <VoteRadio name={'p'} data={Presidents.slice(4, 8)}/>
             <PositionLabel color={'#51b052'} label={'VICE PRESIDENT / Vote for 1'}/>
-            <NamePlaceholder/>
-            <NamePlaceholder/>
+            <VoteRadio name={'vp'} data={VicePresidents.slice(0, 4)}/>
+            <VoteRadio name={'vp'} data={VicePresidents.slice(4, 8)}/>
             <PositionLabel color={'#2071c1'} label={'SENATOR / Vote for 12'}/>
-            <NamePlaceholder/>
-            <NamePlaceholder/>
-            <NamePlaceholder/>
-            <NamePlaceholder/>
+
             <PositionLabel color={'#51b052'} label={'PARTYLIST / Vote for 2'}/>
-            <NamePlaceholder/>
             <FillerLabel/>
         </BallotContainer>
     )
