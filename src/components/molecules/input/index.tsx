@@ -82,7 +82,7 @@ const StyledButton = styled.button`
 `
 
 // @ts-ignore
-export function FormInput({formData, setFormData}) {
+export function FormInput({formData, setFormData, handleFormSubmit}) {
     const [selectedIsland, setSelectedIsland] = useState('b1'); // Default to Luzon
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedProvince, setSelectedProvince] = useState('');
@@ -106,17 +106,6 @@ export function FormInput({formData, setFormData}) {
         // @ts-ignore
         setFormData({ ...formData, province: event.target.value })
         setSelectedProvince(event.target.value);
-    };
-
-    const handleFormSubmit = () => {
-        // You can access the form data from the formData state
-        console.log('Form Data:', formData);
-        const composedString = `${formData.age}${formData.firstName.charAt(0)}${formData.lastName.charAt(0)}${formData.country}${formData.island}${formData.region}${formData.province}${formData.city.slice(0, 3)}`;
-        console.log('ID Data:', composedString);
-
-        // You can convert the form data to JSON and store it as needed
-        const formDataJSON = JSON.stringify(formData);
-        // Store formDataJSON as needed (e.g., in state, send to an API, etc.)
     };
 
     useEffect(() => {

@@ -19,11 +19,11 @@ const FormContainer = styled.div`
 `
 
 // @ts-ignore
-export function Form({formData, setFormData}) {
+export function Form({formData, setFormData, handleFormSubmit}) {
     return (
         <FormContainer>
             <FormHeader/>
-            <FormInput formData={formData} setFormData={setFormData}/>
+            <FormInput formData={formData} setFormData={setFormData} handleFormSubmit={handleFormSubmit}/>
             <FormOutput/>
         </FormContainer>
     )

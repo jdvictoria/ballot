@@ -33,12 +33,27 @@ function App() {
         region: '',
         province: '',
         city: '',
+        p: '',
+        vp: '',
+        sen: '',
+        pl: '',
     });
+
+    const handleFormSubmit = () => {
+        // You can access the form data from the formData state
+        console.log('Form Data:', formData);
+        const composedString = `${formData.age}${formData.firstName.charAt(0)}${formData.lastName.charAt(0)}${formData.country}${formData.island}${formData.region}${formData.province}${formData.city.slice(0, 3)}`;
+        console.log('ID Data:', composedString);
+
+        // You can convert the form data to JSON and store it as needed
+        const formDataJSON = JSON.stringify(formData);
+        // Store formDataJSON as needed (e.g., in state, send to an API, etc.)
+    };
 
     return (
       <MainContainer>
-          <Form formData={formData} setFormData={setFormData}/>
-          <Ballot/>
+          <Form formData={formData} setFormData={setFormData} handleFormSubmit={handleFormSubmit}/>
+          <Ballot formData={formData} setFormData={setFormData}/>
       </MainContainer>
   );
 }

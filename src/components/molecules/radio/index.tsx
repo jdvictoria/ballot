@@ -46,7 +46,7 @@ const StyledText = styled.text`
 `
 
 // @ts-ignore
-export function VoteComponent({type, name, data, maxSelection}) {
+export function VoteComponent({type, name, data, maxSelection, formData, setFormData}) {
     const itemsPerRow = 4;
     const rows = [];
     for (let i = 0; i < data.length; i += itemsPerRow) {
