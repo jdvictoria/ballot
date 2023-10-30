@@ -81,22 +81,11 @@ const StyledButton = styled.button`
   height: 30px;
 `
 
-export function FormInput() {
+// @ts-ignore
+export function FormInput({formData, setFormData}) {
     const [selectedIsland, setSelectedIsland] = useState('b1'); // Default to Luzon
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedProvince, setSelectedProvince] = useState('');
-
-    const [formData, setFormData] = useState({
-        voterId: '',
-        firstName: '',
-        lastName: '',
-        age: '',
-        country: '',
-        island: '',
-        region: '',
-        province: '',
-        city: '',
-    });
 
     const handleIslandChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         // @ts-ignore
@@ -124,7 +113,7 @@ export function FormInput() {
         console.log('Form Data:', formData);
         const composedString = `${formData.age}${formData.firstName.charAt(0)}${formData.lastName.charAt(0)}${formData.country}${formData.island}${formData.region}${formData.province}${formData.city.slice(0, 3)}`;
         console.log('ID Data:', composedString);
-        
+
         // You can convert the form data to JSON and store it as needed
         const formDataJSON = JSON.stringify(formData);
         // Store formDataJSON as needed (e.g., in state, send to an API, etc.)

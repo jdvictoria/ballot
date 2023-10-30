@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 
 import {FormHeader} from "../../molecules/header";
 import {FormInput} from '../../molecules/input';
-import {FormSubmit} from '../../molecules/submit';
+import {FormOutput} from '../../molecules/submit';
 
 const FormContainer = styled.div`
   justify-content: center;
@@ -18,12 +18,13 @@ const FormContainer = styled.div`
   border: 2px solid black;
 `
 
-export function Form() {
+// @ts-ignore
+export function Form({formData, setFormData}) {
     return (
         <FormContainer>
             <FormHeader/>
-            <FormInput/>
-            <FormSubmit/>
+            <FormInput formData={formData} setFormData={setFormData}/>
+            <FormOutput/>
         </FormContainer>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 
 import {Form} from "./components/organisms/form";
@@ -23,9 +23,21 @@ const MainContainer = styled.div`
 `
 
 function App() {
-  return (
+    const [formData, setFormData] = useState({
+        voterId: '',
+        firstName: '',
+        lastName: '',
+        age: '',
+        country: '',
+        island: '',
+        region: '',
+        province: '',
+        city: '',
+    });
+
+    return (
       <MainContainer>
-          <Form/>
+          <Form formData={formData} setFormData={setFormData}/>
           <Ballot/>
       </MainContainer>
   );

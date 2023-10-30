@@ -11,7 +11,7 @@ const SubmissionContainer = styled.div`
   background-color: blue;
 `
 
-export function FormSubmit() {
+export function FormOutput() {
     return (
         <SubmissionContainer>
 
