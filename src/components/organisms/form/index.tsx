@@ -2,6 +2,8 @@ import React from 'react';
 import styled from "styled-components";
 
 import {FormHeader} from "../../molecules/header";
+import {FormInput} from '../../molecules/input';
+import {FormSubmit} from '../../molecules/submit';
 
 const FormContainer = styled.div`
   justify-content: center;
@@ -14,36 +16,12 @@ const FormContainer = styled.div`
   height: 92.5%;
 `
 
-const InputContainer = styled.div`
-  justify-content: center;
-  align-items: center;
-  
-  width: 100%;
-  height: 40%;
-  
-  background-color: yellow;
-`
-
-const SubmissionContainer = styled.div`
-  justify-content: center;
-  align-items: center;
-  
-  width: 100%;
-  height: 40%;
-  
-  background-color: blue;
-`
-
 export function Form() {
     return (
         <FormContainer>
             <FormHeader/>
-            <InputContainer>
-
-            </InputContainer>
-            <SubmissionContainer>
-
-            </SubmissionContainer>
+            <FormInput/>
+            <FormSubmit/>
         </FormContainer>
     )
 }
