@@ -36,30 +36,36 @@ const StyledText = styled.text`
   margin-top: 3px;
   margin-left: 2.5px;
   
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
   color: black;
   font-size: 14px;
 `
 
 // @ts-ignore
 export function VoteComponent({type, name, data}) {
+    const itemsPerRow = 4;
+
+    // Create an array of rows based on the number of items per row
+    const rows = [];
+    for (let i = 0; i < data.length; i += itemsPerRow) {
+        const row = data.slice(i, i + itemsPerRow);
+        rows.push(row);
+    }
+
     return (
-        <StyledHolder>
-            <StyledPlate>
-                <StyledInput type={type} name={name} />
-                <StyledText>{data[0].name}</StyledText>
-            </StyledPlate>
-            <StyledPlate>
-                <StyledInput type={type} name={name} />
-                <StyledText>{data[1].name}</StyledText>
-            </StyledPlate>
-            <StyledPlate>
-                <StyledInput type={type} name={name} />
-                <StyledText>{data[2].name}</StyledText>
-            </StyledPlate>
-            <StyledPlate>
-                <StyledInput type={type} name={name} />
-                <StyledText>{data[3].name}</StyledText>
-            </StyledPlate>
-        </StyledHolder>
+        <div>
+            {rows.map((row, rowIndex) => (
+                <StyledHolder key={rowIndex}>
+                    {row.map((item: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, itemIndex: React.Key | null | undefined) => (
+                        <StyledPlate key={itemIndex}>
+                            <StyledInput type={type} name={name} />
+                            <StyledText>{item.name}</StyledText>
+                        </StyledPlate>
+                    ))}
+                </StyledHolder>
+            ))}
+        </div>
     )
 }

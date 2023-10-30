@@ -31,7 +31,7 @@ const FillerLabel = styled.div`
   align-items: center;
   
   width: 100%;
-  height: 2.5%;
+  height: 3.5%;
 
   border-top: 1px solid black;
   border-bottom: 1px solid black;
@@ -45,18 +45,13 @@ export function Ballot() {
     return (
         <BallotContainer>
             <PositionLabel color={'#2071c1'} label={'PRESIDENT'}></PositionLabel>
-            <VoteComponent type={'radio'} name={'p'} data={Presidents.slice(0, 4)}/>
-            <VoteComponent type={'radio'} name={'p'} data={Presidents.slice(4, 8)}/>
+            <VoteComponent type={'radio'} name={'p'} data={Presidents}/>
             <PositionLabel color={'#51b052'} label={'VICE PRESIDENT'}/>
-            <VoteComponent type={'radio'} name={'vp'} data={VicePresidents.slice(0, 4)}/>
-            <VoteComponent type={'radio'} name={'vp'} data={VicePresidents.slice(4, 8)}/>
+            <VoteComponent type={'radio'} name={'p'} data={VicePresidents}/>
             <PositionLabel color={'#2071c1'} label={'SENATOR'}/>
-            <VoteComponent type={'checkbox'} name={'sen'} data={Senators.slice(0, 4)}/>
-            <VoteComponent type={'checkbox'} name={'sen'} data={Senators.slice(4, 8)}/>
-            <VoteComponent type={'checkbox'} name={'sen'} data={Senators.slice(8, 12)}/>
-            <VoteComponent type={'checkbox'} name={'sen'} data={Senators.slice(12, 16)}/>
+            <VoteComponent type={'checkbox'} name={'p'} data={Senators}/>
             <PositionLabel color={'#51b052'} label={'PARTYLIST'}/>
-            <VoteComponent type={'checkbox'} name={'party'} data={PartyList.slice(0, 4)}/>
+            <VoteComponent type={'checkbox'} name={'p'} data={PartyList}/>
             <FillerLabel/>
         </BallotContainer>
     )
