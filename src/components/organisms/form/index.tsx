@@ -14,6 +14,8 @@ const FormContainer = styled.div`
   
   width: 47.5%;
   height: 92.5%;
+  
+  border: 2px solid black;
 `
 
 export function Form() {

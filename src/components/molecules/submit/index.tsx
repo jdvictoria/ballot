@@ -6,7 +6,7 @@ const SubmissionContainer = styled.div`
   align-items: center;
   
   width: 100%;
-  height: 40%;
+  height: 30%;
   
   background-color: blue;
 `
