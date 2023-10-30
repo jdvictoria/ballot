@@ -46,7 +46,7 @@ const StyledText = styled.text`
 `
 
 // @ts-ignore
-export function VoteComponent({type, name, data, maxSelection, formData, setFormData}) {
+export function VoteComponent({ type, name, data, maxSelection, formData, setFormData }) {
     const itemsPerRow = 4;
     const rows = [];
     for (let i = 0; i < data.length; i += itemsPerRow) {
@@ -54,29 +54,42 @@ export function VoteComponent({type, name, data, maxSelection, formData, setForm
         rows.push(row);
     }
 
+    const [selectedItemKey, setSelectedItemKey] = useState([]);
     const [selectedItems, setSelectedItems] = useState([]);
 
-    const handleItemSelect = (item: any) => {
-        // @ts-ignore
-        if (selectedItems.includes(item)) {
-            // Deselect the item
-            setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item));
-        } else {
-            // Check if the maximum selection limit is reached
-            if (type === 'checkbox' && selectedItems.length >= maxSelection) {
-                alert(`You can only select a maximum of ${maxSelection} items.`);
-            } else {
-                // Select the item
-                // @ts-ignore
-                setSelectedItems([...selectedItems, item]);
-            }
-        }
-
+    const handleItemSelect = (item: { key: any; name?: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactPortal | Iterable<React.ReactNode> | null | undefined; }) => {
+        // Handle item selection for 'checkbox' type
         if (type === 'checkbox') {
+            // @ts-ignore
+            if (selectedItems.includes(item)) {
+                // Deselect the item
+                setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item));
+            } else {
+                // Check if the maximum selection limit is reached
+                if (selectedItems.length >= maxSelection) {
+                    alert(`You can only select a maximum of ${maxSelection} items.`);
+                } else {
+                    // Select the item
+                    // @ts-ignore
+                    setSelectedItems([...selectedItems, item]);
+                }
+            }
+
+            // Update the formData based on the selectedItems
             const fieldName = name === 'sen' ? 'sen' : 'pl';
             setFormData({
                 ...formData,
-                [fieldName]: selectedItems.length + 1, // Update 'sen' or 'pl' in formData
+                [fieldName]: selectedItems.length, // Update 'sen' or 'pl' in formData
+            });
+        }
+
+        // Handle item selection for 'radio' type
+        if (type === 'radio') {
+            const fieldName = name === 'p' ? 'p' : 'vp';
+            setSelectedItemKey(item.key);
+            setFormData({
+                ...formData,
+                [fieldName]: item.key, // Update 'p' or 'vp' in formData
             });
         }
     };
@@ -85,13 +98,13 @@ export function VoteComponent({type, name, data, maxSelection, formData, setForm
         <div>
             {rows.map((row, rowIndex) => (
                 <StyledHolder key={rowIndex}>
-                    {row.map((item: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, itemIndex: React.Key | null | undefined) => (
+                    {row.map((item: { key: never[]; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, itemIndex: React.Key | null | undefined) => (
                         <StyledPlate key={itemIndex}>
                             <StyledInput
                                 type={type}
                                 name={name}
                                 // @ts-ignore
-                                checked={selectedItems.includes(item)}
+                                checked={(type === 'radio' && item.key === selectedItemKey) || (type === 'checkbox' && selectedItems.includes(item))}
                                 onChange={() => handleItemSelect(item)}
                             />
                             <StyledText>{item.name}</StyledText>
@@ -100,5 +113,5 @@ export function VoteComponent({type, name, data, maxSelection, formData, setForm
                 </StyledHolder>
             ))}
         </div>
-    )
+    );
 }
