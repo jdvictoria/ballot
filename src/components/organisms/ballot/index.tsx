@@ -44,14 +44,14 @@ const FillerLabel = styled.div`
 export function Ballot() {
     return (
         <BallotContainer>
-            <PositionLabel color={'#2071c1'} label={'PRESIDENT'}></PositionLabel>
-            <VoteComponent type={'radio'} name={'p'} data={Presidents}/>
-            <PositionLabel color={'#51b052'} label={'VICE PRESIDENT'}/>
-            <VoteComponent type={'radio'} name={'p'} data={VicePresidents}/>
-            <PositionLabel color={'#2071c1'} label={'SENATOR'}/>
-            <VoteComponent type={'checkbox'} name={'p'} data={Senators}/>
-            <PositionLabel color={'#51b052'} label={'PARTYLIST'}/>
-            <VoteComponent type={'checkbox'} name={'p'} data={PartyList}/>
+            <PositionLabel color={'#2071c1'} label={'PRESIDENT / Vote for 1'}></PositionLabel>
+            <VoteComponent type={'radio'} name={'p'} data={Presidents} maxSelection={1}/>
+            <PositionLabel color={'#51b052'} label={'VICE PRESIDENT / Vote for 1'}/>
+            <VoteComponent type={'radio'} name={'p'} data={VicePresidents} maxSelection={1}/>
+            <PositionLabel color={'#2071c1'} label={'SENATOR / Vote for 8'}/>
+            <VoteComponent type={'checkbox'} name={'p'} data={Senators} maxSelection={8}/>
+            <PositionLabel color={'#51b052'} label={'PARTYLIST / Vote for 4'}/>
+            <VoteComponent type={'checkbox'} name={'p'} data={PartyList} maxSelection={4}/>
             <FillerLabel/>
         </BallotContainer>
     )

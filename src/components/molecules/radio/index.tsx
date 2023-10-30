@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 
 const StyledHolder = styled.div`
@@ -44,15 +44,32 @@ const StyledText = styled.text`
 `
 
 // @ts-ignore
-export function VoteComponent({type, name, data}) {
+export function VoteComponent({type, name, data, maxSelection}) {
     const itemsPerRow = 4;
-
-    // Create an array of rows based on the number of items per row
     const rows = [];
     for (let i = 0; i < data.length; i += itemsPerRow) {
         const row = data.slice(i, i + itemsPerRow);
         rows.push(row);
     }
+
+    const [selectedItems, setSelectedItems] = useState([]);
+
+    const handleItemSelect = (item: any) => {
+        // @ts-ignore
+        if (selectedItems.includes(item)) {
+            // Deselect the item
+            setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item));
+        } else {
+            // Check if the maximum selection limit is reached
+            if (type === 'checkbox' && selectedItems.length >= maxSelection) {
+                alert(`You can only select a maximum of ${maxSelection} items.`);
+            } else {
+                // Select the item
+                // @ts-ignore
+                setSelectedItems([...selectedItems, item]);
+            }
+        }
+    };
 
     return (
         <div>
@@ -60,7 +77,13 @@ export function VoteComponent({type, name, data}) {
                 <StyledHolder key={rowIndex}>
                     {row.map((item: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, itemIndex: React.Key | null | undefined) => (
                         <StyledPlate key={itemIndex}>
-                            <StyledInput type={type} name={name} />
+                            <input
+                                type={type}
+                                name={name}
+                                // @ts-ignore
+                                checked={selectedItems.includes(item)}
+                                onChange={() => handleItemSelect(item)}
+                            />
                             <StyledText>{item.name}</StyledText>
                         </StyledPlate>
                     ))}
