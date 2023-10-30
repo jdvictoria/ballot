@@ -24,6 +24,8 @@ const StyledPlate = styled.div`
   border-bottom: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
+  
+  background-color: white;
 `
 
 const StyledInput = styled.input`

@@ -19,26 +19,11 @@ const BallotContainer = styled.div`
   height: 92.5%;
 
   border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
   
-  background-color: white;
-`
-
-const FillerLabel = styled.div`
-  justify-content: center;
-  align-items: center;
-  
-  width: 100%;
-  height: 3.5%;
-
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-        
-  background-color: #2071c1;      
+  background-color: #2071c1;
 `
 
 export function Ballot() {
@@ -52,7 +37,6 @@ export function Ballot() {
             <VoteComponent type={'checkbox'} name={'p'} data={Senators} maxSelection={8}/>
             <PositionLabel color={'#51b052'} label={'PARTYLIST / Vote for 4'}/>
             <VoteComponent type={'checkbox'} name={'p'} data={PartyList} maxSelection={4}/>
-            <FillerLabel/>
         </BallotContainer>
     )
 }
