@@ -77,7 +77,7 @@ export function VoteComponent({type, name, data, maxSelection}) {
                 <StyledHolder key={rowIndex}>
                     {row.map((item: { name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, itemIndex: React.Key | null | undefined) => (
                         <StyledPlate key={itemIndex}>
-                            <input
+                            <StyledInput
                                 type={type}
                                 name={name}
                                 // @ts-ignore
