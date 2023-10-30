@@ -30,6 +30,7 @@ const InputContainer = styled.div`
   width: 100%;
   
   margin-top: 10px;
+  margin-bottom: 10px;
 `
 
 const StyledForm = styled.form`
@@ -75,24 +76,58 @@ const StyledSelect = styled.select`
   margin-bottom: 10px;
 `
 
+const StyledButton = styled.button`
+  width: 150px;
+  height: 30px;
+`
+
 export function FormInput() {
-    const [selectedIsland, setSelectedIsland] = useState(''); // Default to Luzon
+    const [selectedIsland, setSelectedIsland] = useState('b1'); // Default to Luzon
     const [selectedRegion, setSelectedRegion] = useState('');
     const [selectedProvince, setSelectedProvince] = useState('');
 
+    const [formData, setFormData] = useState({
+        voterId: '',
+        firstName: '',
+        lastName: '',
+        age: '',
+        country: '',
+        island: '',
+        region: '',
+        province: '',
+        city: '',
+    });
+
     const handleIslandChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        // @ts-ignore
+        setFormData({ ...formData, island: event.target.value })
         setSelectedIsland(event.target.value);
         setSelectedRegion('');
         setSelectedProvince('');
     };
 
     const handleRegionChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        // @ts-ignore
+        setFormData({ ...formData, region: event.target.value })
         setSelectedRegion(event.target.value);
         setSelectedProvince('');
     };
 
     const handleProvinceChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        // @ts-ignore
+        setFormData({ ...formData, province: event.target.value })
         setSelectedProvince(event.target.value);
+    };
+
+    const handleFormSubmit = () => {
+        // You can access the form data from the formData state
+        console.log('Form Data:', formData);
+        const composedString = `${formData.age}${formData.firstName.charAt(0)}${formData.lastName.charAt(0)}${formData.country}${formData.island}${formData.region}${formData.province}${formData.city.slice(0, 3)}`;
+        console.log('ID Data:', composedString);
+        
+        // You can convert the form data to JSON and store it as needed
+        const formDataJSON = JSON.stringify(formData);
+        // Store formDataJSON as needed (e.g., in state, send to an API, etc.)
     };
 
     useEffect(() => {
@@ -133,21 +168,25 @@ export function FormInput() {
                     <StyledLabel>
                         Voter's ID
                     </StyledLabel>
-                    <StyledInput type="number"/>
+                    <StyledInput type="number" onChange={(e) => setFormData({ ...formData, voterId: e.target.value })} />
                     <StyledLabel>
                         First Name
                     </StyledLabel>
-                    <StyledInput type="text"/>
+                    <StyledInput type="text" onChange={(e) => setFormData({ ...formData, firstName: e.target.value })} />
                     <StyledLabel>
                         Last Name
                     </StyledLabel>
-                    <StyledInput type="text"/>
+                    <StyledInput type="text" onChange={(e) => setFormData({ ...formData, lastName: e.target.value })} />
                 </StyledForm>
                 <StyledForm>
                     <StyledLabel>
                         Age
                     </StyledLabel>
-                    <StyledSelect id="age" name="age">
+                    <StyledSelect
+                        id="age"
+                        name="age"
+                        onChange={(e) => setFormData({ ...formData, age: e.target.value })}
+                    >
                         <option value="">Select Age</option>
                         {ageOptions.map((option) => (
                             <option key={option.value} value={option.value}>
@@ -158,19 +197,23 @@ export function FormInput() {
                     <StyledLabel>
                         Country
                     </StyledLabel>
-                    <StyledSelect id="country" name="country">
+                    <StyledSelect
+                        id="country"
+                        name="country"
+                        onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                    >
                         <option value="na">Select Country</option>
-                        <option value="local">Philippines</option>
-                        <option value="domestic">Outside Philippines</option>
+                        <option value="a0">Philippines</option>
+                        <option value="a1">Outside Philippines</option>
                     </StyledSelect>
                     <StyledLabel>
                         Island Group
                     </StyledLabel>
                     <StyledSelect id="island" name="island" onChange={handleIslandChange}>
                         <option value="na">Select Group</option>
-                        <option value="luzon">Luzon</option>
-                        <option value="visayas">Visayas</option>
-                        <option value="mindanao">Mindanao</option>
+                        <option value="b1">Luzon</option>
+                        <option value="b2">Visayas</option>
+                        <option value="b3">Mindanao</option>
                     </StyledSelect>
                 </StyledForm>
                 <StyledForm>
@@ -181,11 +224,11 @@ export function FormInput() {
                         <option value="na">Select Region</option>
                         {RegionList
                             .filter(region => {
-                                if (selectedIsland === 'luzon') {
+                                if (selectedIsland === 'b1') {
                                     return ['NCR', 'CAR', 'I', 'II', 'III', 'IV-A', 'IV-B', 'V'].includes(region.key);
-                                } else if (selectedIsland === 'visayas') {
+                                } else if (selectedIsland === 'b2') {
                                     return ['VI', 'VII', 'VIII'].includes(region.key);
-                                } else {
+                                } else if (selectedIsland === 'b3') {
                                     return ['IX', 'X', 'XI', 'XII', 'XIII', 'ARMM'].includes(region.key);
                                 }
                             })
@@ -211,12 +254,16 @@ export function FormInput() {
                     <StyledLabel>
                         City
                     </StyledLabel>
-                    <StyledSelect id="city" name="city">
+                    <StyledSelect
+                        id="city"
+                        name="city"
+                        onChange={(e) => setFormData({ ...formData, city: e.target.value })} // Handle the City dropdown's change event
+                    >
                         <option value="na">Select City</option>
                     </StyledSelect>
                 </StyledForm>
             </InputContainer>
-            {/* Implement the button here */}
+            <StyledButton onClick={handleFormSubmit}>Submit Form</StyledButton>
         </StyledDiv>
     )
 }
