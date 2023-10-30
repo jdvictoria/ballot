@@ -71,6 +71,14 @@ export function VoteComponent({type, name, data, maxSelection, formData, setForm
                 setSelectedItems([...selectedItems, item]);
             }
         }
+
+        if (type === 'checkbox') {
+            const fieldName = name === 'sen' ? 'sen' : 'pl';
+            setFormData({
+                ...formData,
+                [fieldName]: selectedItems.length + 1, // Update 'sen' or 'pl' in formData
+            });
+        }
     };
 
     return (
