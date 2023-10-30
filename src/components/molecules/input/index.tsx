@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 
 import RegionList from '../../../data/regions.json';
 import ProvinceList from '../../../data/provinces.json';
+import CitiesList from '../../../data/cities.json';
 
 const InputContainer = styled.div`
   display: flex;
@@ -24,17 +25,49 @@ const StyledForm = styled.form`
 `
 
 export function FormInput() {
-    const [selectedIsland, setSelectedIsland] = useState('luzon'); // Default to Luzon
-    const [selectedRegion, setSelectedRegion] = useState('NCR');
+    const [selectedIsland, setSelectedIsland] = useState(''); // Default to Luzon
+    const [selectedRegion, setSelectedRegion] = useState('');
+    const [selectedProvince, setSelectedProvince] = useState('');
 
     const handleIslandChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         setSelectedIsland(event.target.value);
-        setSelectedRegion(''); // Reset selected region when the island changes
+        setSelectedRegion('');
+        setSelectedProvince('');
     };
 
     const handleRegionChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         setSelectedRegion(event.target.value);
+        setSelectedProvince('');
     };
+
+    const handleProvinceChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setSelectedProvince(event.target.value);
+    };
+
+    useEffect(() => {
+        // When the selectedProvince changes, filter the cities based on the selectedProvince
+        const filteredCities = CitiesList.filter(city => city.province === selectedProvince && city.city);
+
+        // Update the City dropdown with the filtered cities
+        const cityDropdown = document.getElementById("city");
+        // @ts-ignore
+        cityDropdown.innerHTML = ""; // Clear existing options
+
+        // Add an initial "None" option
+        const noneOption = document.createElement("option");
+        noneOption.value = "none";
+        noneOption.text = "None";
+        // @ts-ignore
+        cityDropdown.appendChild(noneOption);
+
+        filteredCities.forEach(city => {
+            const option = document.createElement("option");
+            option.value = city.name;
+            option.text = city.name;
+            // @ts-ignore
+            cityDropdown.appendChild(option);
+        });
+    }, [selectedProvince]);
 
 
     return (
@@ -58,6 +91,7 @@ export function FormInput() {
                     Country
                 </label>
                 <select id="country" name="country">
+                    <option value="na">None</option>
                     <option value="local">Philippines</option>
                     <option value="domestic">Outside Philippines</option>
                 </select>
@@ -65,6 +99,7 @@ export function FormInput() {
                     Island Group
                 </label>
                 <select id="island" name="island" onChange={handleIslandChange}>
+                    <option value="na">None</option>
                     <option value="luzon">Luzon</option>
                     <option value="visayas">Visayas</option>
                     <option value="mindanao">Mindanao</option>
@@ -73,6 +108,7 @@ export function FormInput() {
                     Region
                 </label>
                 <select id="region" name="region" onChange={handleRegionChange}>
+                    <option value="na">None</option>
                     {RegionList
                         .filter(region => {
                             if (selectedIsland === 'luzon') {
@@ -94,7 +130,8 @@ export function FormInput() {
                 <label>
                     Province
                 </label>
-                <select id="province" name="province">
+                <select id="province" name="province" onChange={handleProvinceChange}>
+                    <option value="na">None</option>
                     {ProvinceList
                         .filter(province => province.region === selectedRegion)
                         .map(province => (
@@ -102,6 +139,12 @@ export function FormInput() {
                                 {province.name}
                             </option>
                         ))}
+                </select>
+                <label>
+                    City
+                </label>
+                <select id="city" name="city">
+                    <option value="na">None</option>
                 </select>
             </StyledForm>
         </InputContainer>
