@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 
 import RegionList from '../../../data/regions.json';
+import ProvinceList from '../../../data/provinces.json';
 
 const InputContainer = styled.div`
   display: flex;
@@ -24,10 +25,17 @@ const StyledForm = styled.form`
 
 export function FormInput() {
     const [selectedIsland, setSelectedIsland] = useState('luzon'); // Default to Luzon
+    const [selectedRegion, setSelectedRegion] = useState('NCR');
 
     const handleIslandChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
         setSelectedIsland(event.target.value);
+        setSelectedRegion(''); // Reset selected region when the island changes
     };
+
+    const handleRegionChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+        setSelectedRegion(event.target.value);
+    };
+
 
     return (
         <InputContainer>
@@ -64,7 +72,7 @@ export function FormInput() {
                 <label>
                     Region
                 </label>
-                <select id="region" name="region">
+                <select id="region" name="region" onChange={handleRegionChange}>
                     {RegionList
                         .filter(region => {
                             if (selectedIsland === 'luzon') {
@@ -78,6 +86,20 @@ export function FormInput() {
                         .map(region => (
                             <option key={region.key} value={region.key}>
                                 {region.name}
+                            </option>
+                        ))}
+                </select>
+            </StyledForm>
+            <StyledForm>
+                <label>
+                    Province
+                </label>
+                <select id="province" name="province">
+                    {ProvinceList
+                        .filter(province => province.region === selectedRegion)
+                        .map(province => (
+                            <option key={province.key} value={province.key}>
+                                {province.name}
                             </option>
                         ))}
                 </select>
