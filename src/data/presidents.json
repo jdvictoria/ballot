@@ -1,10 +1,10 @@
 [
-  { "name": "Allisson Golden" },
-  { "name": "Mekhi Rhodes" },
-  { "name": "Steven Valentine" },
-  { "name": "Campbell Rocha" },
-  { "name": "Kaitlynn Hickman" },
-  { "name": "Salma Ingram" },
-  { "name": "Cade Reynolds" },
-  { "name": "Maren Solis" }
+  { "name": "Allisson Golden", "key": "p1" },
+  { "name": "Mekhi Rhodes", "key": "p2" },
+  { "name": "Steven Valentine", "key": "p3" },
+  { "name": "Campbell Rocha", "key": "p4" },
+  { "name": "Kaitlynn Hickman", "key": "p5" },
+  { "name": "Salma Ingram", "key": "p6" },
+  { "name": "Cade Reynolds", "key": "p7" },
+  { "name": "Maren Solis", "key": "p8" }
 ]
