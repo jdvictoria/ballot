@@ -79,7 +79,7 @@ export function VoteComponent({ type, name, data, maxSelection, formData, setFor
             const fieldName = name === 'sen' ? 'sen' : 'pl';
             setFormData({
                 ...formData,
-                [fieldName]: selectedItems.length, // Update 'sen' or 'pl' in formData
+                [fieldName]: selectedItems.length + 1, // Update 'sen' or 'pl' in formData
             });
         }
 

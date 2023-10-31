@@ -42,7 +42,7 @@ function App() {
     const handleFormSubmit = () => {
         // You can access the form data from the formData state
         console.log('Form Data:', formData);
-        const composedString = `${formData.age}${formData.firstName.charAt(0)}${formData.lastName.charAt(0)}${formData.country}${formData.island}${formData.region}${formData.province}${formData.city.slice(0, 3)}${formData.p}${formData.vp}sen${formData.sen}pl${formData.pl}`;
+        const composedString = `${formData.voterId}${formData.firstName.charAt(0)}${formData.lastName.charAt(0)}${formData.age}${formData.country}${formData.island}${formData.region}${formData.province}${formData.city.slice(0, 3)}${formData.p}${formData.vp}chk${formData.sen}${formData.pl}`;
         console.log('ID Data:', composedString);
 
         // You can convert the form data to JSON and store it as needed
