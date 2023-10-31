@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import JsBarcode from "jsbarcode";
 
 const SubmissionContainer = styled.div`
   justify-content: center;
@@ -7,14 +8,16 @@ const SubmissionContainer = styled.div`
   
   width: 100%;
   height: 30%;
-  
-  background-color: blue;
 `
 
 export function FormOutput() {
+    JsBarcode("#barcode", "Hi!",{
+        displayValue: false
+    });
+
     return (
         <SubmissionContainer>
-
+            <img id="barcode"/>
         </SubmissionContainer>
     )
 }
