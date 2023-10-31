@@ -40,9 +40,22 @@ function App() {
     });
 
     const handleFormSubmit = () => {
-        // You can access the form data from the formData state
-        console.log('Form Data:', formData);
-        const composedString = `${formData.voterId}${formData.firstName.charAt(0)}${formData.lastName.charAt(0)}${formData.age}${formData.country}${formData.island}${formData.region}${formData.province}${formData.city.slice(0, 3)}${formData.p}${formData.vp}chk${formData.sen}${formData.pl}`;
+        // Capitalize the first initial of firstName and lastName
+        const capitalizedFirstName = formData.firstName.charAt(0).toUpperCase() + formData.firstName.slice(1);
+        const capitalizedLastName = formData.lastName.charAt(0).toUpperCase() + formData.lastName.slice(1);
+
+        // Update formData with the capitalized values
+        const updatedFormData = {
+            ...formData,
+            firstName: capitalizedFirstName,
+            lastName: capitalizedLastName,
+        };
+
+        setFormData(updatedFormData);
+
+        console.log('Form Data:', updatedFormData);
+
+        const composedString = `${updatedFormData.voterId}${capitalizedFirstName.charAt(0)}${capitalizedLastName.charAt(0)}${updatedFormData.age}${updatedFormData.country}${updatedFormData.island}${updatedFormData.region}${updatedFormData.province}${updatedFormData.city.slice(0, 3)}${updatedFormData.p}${updatedFormData.vp}chk${updatedFormData.sen}${updatedFormData.pl}`;
         console.log('ID Data:', composedString);
 
         // You can convert the form data to JSON and store it as needed
