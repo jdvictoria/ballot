@@ -22,11 +22,13 @@ const TextSection = styled.div`
 
 const ImageSection = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-direction: column;
   
-  padding-right: 185px;
+  bottom: 0;
+  
+  padding-right: 125px;
   
   width: 25%;
 `
@@ -43,7 +45,7 @@ const StyledText = styled.text`
 `
 
 const StyledSVG = styled.svg`
-  width: 325px;
+  width: 250px;
 `
 
 // @ts-ignore
