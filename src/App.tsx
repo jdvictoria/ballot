@@ -40,6 +40,8 @@ function App() {
     });
 
     const handleFormSubmit = () => {
+        let composedString;
+
         // Capitalize the first initial of firstName and lastName
         const capitalizedFirstName = formData.firstName.charAt(0).toUpperCase() + formData.firstName.slice(1);
         const capitalizedLastName = formData.lastName.charAt(0).toUpperCase() + formData.lastName.slice(1);
@@ -55,7 +57,24 @@ function App() {
 
         console.log('Form Data:', updatedFormData);
 
-        const composedString = `
+        if (updatedFormData.voterId === '') {
+            alert('Please input your Voters ID');
+        } else if (updatedFormData.firstName === '') {
+            alert('Please input your First Name');
+        } else if (updatedFormData.lastName === '') {
+            alert('Please input your Last Name');
+        } else if (updatedFormData.age === '') {
+            alert('Please input your Age');
+        } else if (updatedFormData.country === '') {
+            alert('Please input your Country');
+        } else if (updatedFormData.island === '') {
+            alert('Please input your Island Group');
+        } else if (updatedFormData.region === '') {
+            alert('Please input your Region');
+        } else if (updatedFormData.province === '') {
+            alert('Please input your Province');
+        } else {
+            composedString = `
             ${updatedFormData.voterId}
             ${capitalizedFirstName.charAt(0)}
             ${capitalizedLastName.charAt(0)}
@@ -68,7 +87,8 @@ function App() {
             ${updatedFormData.p}
             ${updatedFormData.vp}
             chk${updatedFormData.sen}${updatedFormData.pl}`;
-        
+        }
+
         console.log('ID Data:', composedString);
 
         // You can convert the form data to JSON and store it as needed
