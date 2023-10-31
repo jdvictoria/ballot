@@ -19,12 +19,12 @@ const FormContainer = styled.div`
 `
 
 // @ts-ignore
-export function Form({formData, setFormData, handleFormSubmit}) {
+export function Form({formData, setFormData, handleFormSubmit, hashString, hashedString}) {
     return (
         <FormContainer>
             <FormHeader/>
             <FormInput formData={formData} setFormData={setFormData} handleFormSubmit={handleFormSubmit}/>
-            <FormOutput/>
+            <FormOutput hashString={hashString} hashedString={hashedString}/>
         </FormContainer>
     )
 }

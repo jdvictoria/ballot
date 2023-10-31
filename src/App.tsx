@@ -23,6 +23,9 @@ const MainContainer = styled.div`
 `
 
 function App() {
+    const [hashString, setHashString] = useState('000000000000');
+    const [hashedString, setHashedString] = useState('000000000000');
+
     const [formData, setFormData] = useState({
         voterId: '',
         firstName: '',
@@ -75,21 +78,10 @@ function App() {
             alert('Please input your Province');
         } else {
             composedString = `
-            ${updatedFormData.voterId}
-            ${capitalizedFirstName.charAt(0)}
-            ${capitalizedLastName.charAt(0)}
-            ${updatedFormData.age}
-            ${updatedFormData.country}
-            ${updatedFormData.island}
-            ${updatedFormData.region}
-            ${updatedFormData.province}
-            ${updatedFormData.city.slice(0, 3)}
-            ${updatedFormData.p}
-            ${updatedFormData.vp}
-            chk${updatedFormData.sen}${updatedFormData.pl}`;
+            ${updatedFormData.voterId}${capitalizedFirstName.charAt(0)}${capitalizedLastName.charAt(0)}${updatedFormData.age}${updatedFormData.country}${updatedFormData.island}${updatedFormData.region}${updatedFormData.province}${updatedFormData.city.slice(0, 3)}${updatedFormData.p}${updatedFormData.vp}chk${updatedFormData.sen}${updatedFormData.pl}`;
+            console.log('ID Data:', composedString);
+            setHashString(composedString);
         }
-
-        console.log('ID Data:', composedString);
 
         // You can convert the form data to JSON and store it as needed
         const formDataJSON = JSON.stringify(formData);
@@ -98,7 +90,13 @@ function App() {
 
     return (
       <MainContainer>
-          <Form formData={formData} setFormData={setFormData} handleFormSubmit={handleFormSubmit}/>
+          <Form
+              formData={formData}
+              setFormData={setFormData}
+              handleFormSubmit={handleFormSubmit}
+              hashString={hashString}
+              hashedString={hashedString}
+          />
           <Ballot formData={formData} setFormData={setFormData}/>
       </MainContainer>
   );
