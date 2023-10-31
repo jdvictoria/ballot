@@ -26,7 +26,7 @@ const ImageSection = styled.div`
   align-items: center;
   flex-direction: column;
   
-  padding-right: 100px;
+  padding-right: 185px;
   
   width: 25%;
 `
@@ -40,6 +40,10 @@ const StyledText = styled.text`
   
   color: black;
   font-size: 18px;
+`
+
+const StyledSVG = styled.svg`
+  width: 325px;
 `
 
 // @ts-ignore
@@ -63,12 +67,12 @@ export function FormOutput({hashString, hashedString}) {
                 </StyledText>
             </TextSection>
             <ImageSection>
-                <svg className="barcode"
-                     jsbarcode-format="upc"
+                <StyledSVG className="barcode"
+                     jsbarcode-format="CODE128"
                      jsbarcode-value={hashedString}
                      jsbarcode-textmargin="0"
                      jsbarcode-fontoptions="bold">
-                </svg>
+                </StyledSVG>
             </ImageSection>
         </SubmissionContainer>
     )

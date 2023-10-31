@@ -24,7 +24,7 @@ const MainContainer = styled.div`
 
 function App() {
     const [hashString, setHashString] = useState('000000000000');
-    const [hashedString, setHashedString] = useState('000000000000');
+    const [hashedString, setHashedString] = useState('1Lbcfr7sabcd4ZnX71');
 
     const [formData, setFormData] = useState({
         voterId: '',
