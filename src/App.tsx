@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 
 import {Form} from "./components/organisms/form";
@@ -23,10 +23,81 @@ const MainContainer = styled.div`
 `
 
 function App() {
-  return (
+    const [hashString, setHashString] = useState('000000000000');
+    const [hashedString, setHashedString] = useState('1Lbcfr7sabcd4ZnX71');
+
+    const [formData, setFormData] = useState({
+        voterId: '',
+        firstName: '',
+        lastName: '',
+        age: '',
+        country: '',
+        island: '',
+        region: '',
+        province: '',
+        city: '',
+        p: '',
+        vp: '',
+        sen: '',
+        pl: '',
+    });
+
+    const handleFormSubmit = () => {
+        let composedString;
+
+        // Capitalize the first initial of firstName and lastName
+        const capitalizedFirstName = formData.firstName.charAt(0).toUpperCase() + formData.firstName.slice(1);
+        const capitalizedLastName = formData.lastName.charAt(0).toUpperCase() + formData.lastName.slice(1);
+
+        // Update formData with the capitalized values
+        const updatedFormData = {
+            ...formData,
+            firstName: capitalizedFirstName,
+            lastName: capitalizedLastName,
+        };
+
+        setFormData(updatedFormData);
+
+        console.log('Form Data:', updatedFormData);
+
+        if (updatedFormData.voterId === '') {
+            alert('Please input your Voters ID');
+        } else if (updatedFormData.firstName === '') {
+            alert('Please input your First Name');
+        } else if (updatedFormData.lastName === '') {
+            alert('Please input your Last Name');
+        } else if (updatedFormData.age === '') {
+            alert('Please input your Age');
+        } else if (updatedFormData.country === '') {
+            alert('Please input your Country');
+        } else if (updatedFormData.island === '') {
+            alert('Please input your Island Group');
+        } else if (updatedFormData.region === '') {
+            alert('Please input your Region');
+        } else if (updatedFormData.province === '') {
+            alert('Please input your Province');
+        } else {
+            composedString = `
+            ${updatedFormData.voterId}${capitalizedFirstName.charAt(0)}${capitalizedLastName.charAt(0)}${updatedFormData.age}${updatedFormData.country}${updatedFormData.island}${updatedFormData.region}${updatedFormData.province}${updatedFormData.city.slice(0, 3)}${updatedFormData.p}${updatedFormData.vp}chk${updatedFormData.sen}${updatedFormData.pl}`;
+            console.log('ID Data:', composedString);
+            setHashString(composedString);
+        }
+
+        // You can convert the form data to JSON and store it as needed
+        const formDataJSON = JSON.stringify(formData);
+        // Store formDataJSON as needed (e.g., in state, send to an API, etc.)
+    };
+
+    return (
       <MainContainer>
-          <Form/>
-          <Ballot/>
+          <Form
+              formData={formData}
+              setFormData={setFormData}
+              handleFormSubmit={handleFormSubmit}
+              hashString={hashString}
+              hashedString={hashedString}
+          />
+          <Ballot formData={formData} setFormData={setFormData}/>
       </MainContainer>
   );
 }

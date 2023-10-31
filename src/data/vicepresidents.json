@@ -1,10 +1,10 @@
 [
-  { "name": "Mikayla Espinoza" },
-  { "name": "Jon Chan" },
-  { "name": "Sidney Richmond" },
-  { "name": "Wendy Lam" },
-  { "name": "Marlee Fisher" },
-  { "name": "Elsa Hodges" },
-  { "name": "Leia Norman" },
-  { "name": "Beatrice Long" }
+  { "name": "Mikayla Espinoza", "key": "vp1" },
+  { "name": "Jon Chan", "key": "vp2" },
+  { "name": "Sidney Richmond", "key": "vp3" },
+  { "name": "Wendy Lam", "key": "vp4" },
+  { "name": "Marlee Fisher", "key": "vp5" },
+  { "name": "Elsa Hodges", "key": "vp6" },
+  { "name": "Leia Norman", "key": "vp7" },
+  { "name": "Beatrice Long", "key": "vp8" }
 ]
