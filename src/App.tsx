@@ -55,7 +55,20 @@ function App() {
 
         console.log('Form Data:', updatedFormData);
 
-        const composedString = `${updatedFormData.voterId}${capitalizedFirstName.charAt(0)}${capitalizedLastName.charAt(0)}${updatedFormData.age}${updatedFormData.country}${updatedFormData.island}${updatedFormData.region}${updatedFormData.province}${updatedFormData.city.slice(0, 3)}${updatedFormData.p}${updatedFormData.vp}chk${updatedFormData.sen}${updatedFormData.pl}`;
+        const composedString = `
+            ${updatedFormData.voterId}
+            ${capitalizedFirstName.charAt(0)}
+            ${capitalizedLastName.charAt(0)}
+            ${updatedFormData.age}
+            ${updatedFormData.country}
+            ${updatedFormData.island}
+            ${updatedFormData.region}
+            ${updatedFormData.province}
+            ${updatedFormData.city.slice(0, 3)}
+            ${updatedFormData.p}
+            ${updatedFormData.vp}
+            chk${updatedFormData.sen}${updatedFormData.pl}`;
+        
         console.log('ID Data:', composedString);
 
         // You can convert the form data to JSON and store it as needed
