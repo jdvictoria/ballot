@@ -4,6 +4,8 @@ import styled from "styled-components";
 import {Form} from "./components/organisms/form";
 import {Ballot} from "./components/organisms/ballot";
 
+const bytes32 = require('bytes32');
+
 const MainContainer = styled.div`
   display: flex;
   position: absolute;
@@ -104,6 +106,8 @@ function App() {
         const vpBytes = encoder.encode(updatedFormData.vp);
         const chkBytes = encoder.encode(checkBoxString);
 
+        console.log(bytes32({ input: hashString, ignoreLength: true }));
+        setHashedString(bytes32({ input: hashString, ignoreLength: true }));
     };
 
     return (
