@@ -6,6 +6,9 @@ const SubmissionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  
+  padding-top: 15px;
   
   width: 100%;
   height: 30%;
@@ -14,38 +17,34 @@ const SubmissionContainer = styled.div`
 const TextSection = styled.div`
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   flex-direction: column;
   
-  width: 75%;
+  width: 100%;
 `
 
 const ImageSection = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   
-  bottom: 0;
-  
-  padding-right: 125px;
-  
-  width: 25%;
+  width: 100%;
+  height: 40%;
 `
 
 const StyledText = styled.text`
   text-align: center;
   
-  padding-top: 2.5px;
-  padding-bottom: 2.5px;
-  padding-left: 40px;
+  padding-bottom: 5px;
   
   color: black;
-  font-size: 18px;
+  font-size: 17px;
 `
 
 const StyledSVG = styled.svg`
-  width: 250px;
+  width: 400px;
+  height: 125px;
 `
 
 // @ts-ignore
