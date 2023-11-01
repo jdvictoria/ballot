@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import JsBarcode from "jsbarcode";
 
 const SubmissionContainer = styled.div`
   display: flex;

@@ -201,6 +201,7 @@ export function FormInput({formData, setFormData, handleFormSubmit}) {
                     <StyledSelect id="region" name="region" onChange={handleRegionChange}>
                         <option value="na">Select Region</option>
                         {RegionList
+                            // eslint-disable-next-line array-callback-return
                             .filter(region => {
                                 if (selectedIsland === 'b1') {
                                     return ['NCR', 'CAR', 'I', 'II', 'III', 'IV-A', 'IV-B', 'V'].includes(region.key);
