@@ -8,8 +8,6 @@ const SubmissionContainer = styled.div`
   align-items: center;
   flex-direction: column;
   
-  padding-top: 15px;
-  
   width: 100%;
   height: 30%;
 `
@@ -23,16 +21,6 @@ const TextSection = styled.div`
   width: 100%;
 `
 
-const ImageSection = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  
-  width: 100%;
-  height: 40%;
-`
-
 const StyledText = styled.text`
   text-align: center;
   
@@ -42,15 +30,8 @@ const StyledText = styled.text`
   font-size: 17px;
 `
 
-const StyledSVG = styled.svg`
-  width: 400px;
-  height: 125px;
-`
-
 // @ts-ignore
 export function FormOutput({hashString, hashedString}) {
-    JsBarcode(".barcode").init();
-
     return (
         <SubmissionContainer>
             <TextSection>
@@ -66,15 +47,13 @@ export function FormOutput({hashString, hashedString}) {
                 <StyledText style={{fontWeight: "bold"}}>
                     {!hashedString ? 'N/A' : hashedString}
                 </StyledText>
+                <StyledText>
+                    Deployment Status:
+                </StyledText>
+                <StyledText style={{fontWeight: "bold"}}>
+                    N/A
+                </StyledText>
             </TextSection>
-            <ImageSection>
-                <StyledSVG className="barcode"
-                     jsbarcode-format="CODE128"
-                     jsbarcode-value={hashedString}
-                     jsbarcode-textmargin="0"
-                     jsbarcode-fontoptions="bold">
-                </StyledSVG>
-            </ImageSection>
         </SubmissionContainer>
     )
 }
