@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from "styled-components";
 
 import {Form} from "./components/organisms/form";
@@ -25,6 +25,7 @@ const MainContainer = styled.div`
 `
 
 function App() {
+    const [submitted, setSubmitted] = useState(false);
     const [hashString, setHashString] = useState('');
     const [hashedString, setHashedString] = useState('N/A');
 
@@ -43,6 +44,13 @@ function App() {
         sen: '',
         pl: '',
     });
+
+    useEffect(() => {
+        if (submitted) {
+            setHashedString(Web3.utils.soliditySha3(hashString));
+        }
+        setSubmitted(false);
+    }, [submitted]);
 
     const handleFormSubmit = () => {
         let composedString;
@@ -83,10 +91,8 @@ function App() {
             composedString = `
             ${updatedFormData.voterId}${capitalizedFirstName.charAt(0)}${capitalizedLastName.charAt(0)}${updatedFormData.age}${updatedFormData.country}${updatedFormData.island}${updatedFormData.region}${updatedFormData.province}${updatedFormData.city.slice(0, 3)}${updatedFormData.p}${updatedFormData.vp}${checkBoxString}`;
             setHashString(composedString);
+            setSubmitted(true);
         }
-
-        console.log(Web3.utils.soliditySha3(hashString));
-        setHashedString(Web3.utils.soliditySha3(hashString));
     };
 
     return (
