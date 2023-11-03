@@ -26,7 +26,9 @@ const MainContainer = styled.div`
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='25' stroke-dasharray='10%2c 15' stroke-dashoffset='60' stroke-linecap='butt'/%3e%3c/svg%3e");
 `
 
-async function getAccount() {
+// @ts-ignore
+async function getAccount(region) {
+    // Fetch Accounts
     // @ts-ignore
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
         .catch((err) => {
@@ -36,10 +38,62 @@ async function getAccount() {
                 console.error(err);
             }
         });
-    console.log(accounts);
-    // @ts-ignore
-    const account = accounts[7];
-    console.log(account);
+    // Choose Specific Account
+    let account;
+
+    if (region === 'NCR') {
+        // @ts-ignore
+        account = accounts[15];
+    } else if (region === 'CAR') {
+        // @ts-ignore
+        account = accounts[16];
+    } else if (region === 'I') {
+        // @ts-ignore
+        account = accounts[1];
+    } else if (region === 'II') {
+        // @ts-ignore
+        account = accounts[2];
+    } else if (region === 'III') {
+        // @ts-ignore
+        account = accounts[3];
+    } else if (region === 'IV-A') {
+        // @ts-ignore
+        account = accounts[4];
+    } else if (region === 'IV-B') {
+        // @ts-ignore
+        account = accounts[5];
+    } else if (region === 'V') {
+        // @ts-ignore
+        account = accounts[6];
+    } else if (region === 'VI') {
+        // @ts-ignore
+        account = accounts[7];
+    } else if (region === 'VII') {
+        // @ts-ignore
+        account = accounts[8];
+    } else if (region === 'VIII') {
+        // @ts-ignore
+        account = accounts[9];
+    } else if (region === 'IX') {
+        // @ts-ignore
+        account = accounts[10];
+    } else if (region === 'X') {
+        // @ts-ignore
+        account = accounts[11];
+    } else if (region === 'XI') {
+        // @ts-ignore
+        account = accounts[12];
+    } else if (region === 'XII') {
+        // @ts-ignore
+        account = accounts[13];
+    } else if (region === 'XIII') {
+        // @ts-ignore
+        account = accounts[14];
+    } else if (region === 'ARMM') {
+        // @ts-ignore
+        account = accounts[17];
+    }
+    return account;
 }
 
 function App() {
@@ -110,7 +164,12 @@ function App() {
             ${updatedFormData.voterId}${capitalizedFirstName.charAt(0)}${capitalizedLastName.charAt(0)}${updatedFormData.age}${updatedFormData.country}${updatedFormData.island}${updatedFormData.region}${updatedFormData.province}${updatedFormData.city.slice(0, 3)}${updatedFormData.p}${updatedFormData.vp}${checkBoxString}`;
             setHashString(composedString);
             setSubmitted(true);
-            getAccount();
+
+            // Metamask Backend
+            // @ts-ignore
+            const regionAccount = getAccount(updatedFormData.region);
+
+            console.log(regionAccount);
         }
     };
 
