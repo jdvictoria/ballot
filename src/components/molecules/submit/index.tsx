@@ -70,13 +70,15 @@ export function FormOutput({hashString, hashedString}) {
             <MetamaskSection>
                 <GridColumn>
                     <StyledText>
-                        Connection Status:
+                        Deployment Status:
                     </StyledText>
-                    <MetaMaskButton theme={"light"} color="white" connectedText={'Connected'}></MetaMaskButton>
+                    <StyledText style={{fontWeight: "bold"}}>
+                        N/A
+                    </StyledText>
                 </GridColumn>
                 <GridColumn>
                     <StyledText>
-                        Deployment Status:
+                        Transaction Hash:
                     </StyledText>
                     <StyledText style={{fontWeight: "bold"}}>
                         N/A
