@@ -50,7 +50,7 @@ const StyledText = styled.text`
 `
 
 // @ts-ignore
-export function FormOutput({hashString, hashedString}) {
+export function FormOutput({hashString, hashedString, statusString, transactionString}) {
     return (
         <SubmissionContainer>
             <TextSection>
@@ -73,7 +73,7 @@ export function FormOutput({hashString, hashedString}) {
                         Deployment Status:
                     </StyledText>
                     <StyledText style={{fontWeight: "bold"}}>
-                        N/A
+                        {!statusString ? 'Undeployed' : statusString}
                     </StyledText>
                 </GridColumn>
                 <GridColumn>
@@ -81,7 +81,7 @@ export function FormOutput({hashString, hashedString}) {
                         Transaction Hash:
                     </StyledText>
                     <StyledText style={{fontWeight: "bold"}}>
-                        N/A
+                        {!transactionString ? 'N/A' : transactionString}
                     </StyledText>
                 </GridColumn>
             </MetamaskSection>

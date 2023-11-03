@@ -138,8 +138,10 @@ async function setTransaction(fromAccount, toAccount) {
 
 function App() {
     const [submitted, setSubmitted] = useState(false);
-    const [hashString, setHashString] = useState('');
+    const [hashString, setHashString] = useState('N/A');
     const [hashedString, setHashedString] = useState('N/A');
+    const [statusString, setStatusString] = useState('Undeployed');
+    const [transactionString, setTransactionString] = useState('N/A');
 
     const [formData, setFormData] = useState({
         voterId: '',
@@ -222,6 +224,8 @@ function App() {
                 handleFormSubmit={handleFormSubmit}
                 hashString={hashString}
                 hashedString={hashedString}
+                statusString={statusString}
+                transactionString={transactionString}
             />
             <Ballot formData={formData} setFormData={setFormData}/>
         </MainContainer>
