@@ -26,8 +26,25 @@ const MainContainer = styled.div`
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='25' stroke-dasharray='10%2c 15' stroke-dashoffset='60' stroke-linecap='butt'/%3e%3c/svg%3e");
 `
 
+async function getFromAccount() {
+    // Fetch Accounts
+    // @ts-ignore
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+        .catch((err) => {
+            if (err.code === 4001) {
+                // EIP-1193 userRejectedRequest error
+                // If this happens, the user rejected the connection request.
+                console.log('Please connect to MetaMask.');
+            } else {
+                console.error(err);
+            }
+        });
+    // @ts-ignore
+    return accounts[0];
+}
+
 // @ts-ignore
-async function getAccount(region) {
+async function getToAccount(region) {
     // Fetch Accounts
     // @ts-ignore
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -94,6 +111,29 @@ async function getAccount(region) {
         account = accounts[17];
     }
     return account;
+}
+
+// @ts-ignore
+async function setTransaction(fromAccount, toAccount) {
+    // @ts-ignore
+    const transaction = await window.ethereum.request({
+            method: 'eth_sendTransaction',
+            params: [
+                {
+                    from: fromAccount,
+                    to: toAccount,
+                    value: 0.05,
+                    gasLimit: '0x5028',
+                    maxPriorityFeePerGas: '0x3b9aca00',
+                    maxFeePerGas: '0x2540be400',
+                },
+            ],
+        })
+        .then((txHash) => {
+            console.log('Transaction Hash:', txHash);
+            // You can handle the transaction hash here or update your state accordingly.
+        })
+        .catch((error) => console.error('Transaction Error:', error));
 }
 
 function App() {
@@ -167,9 +207,10 @@ function App() {
 
             // Metamask Backend
             // @ts-ignore
-            const regionAccount = getAccount(updatedFormData.region);
-
-            console.log(regionAccount);
+            const fromAccount = getFromAccount();
+            // @ts-ignore
+            const toAccount = getToAccount(updatedFormData.region);
+            const sendTransaction = setTransaction(fromAccount, toAccount);
         }
     };
 
