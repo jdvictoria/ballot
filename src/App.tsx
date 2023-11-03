@@ -5,6 +5,8 @@ import {Form} from "./components/organisms/form";
 import {Ballot} from "./components/organisms/ballot";
 
 const Web3 = require('web3');
+const ethereumButton = document.querySelector('.enableEthereumButton');
+const showAccount = document.querySelector('.showAccount');
 
 const MainContainer = styled.div`
   display: flex;
@@ -23,6 +25,22 @@ const MainContainer = styled.div`
 
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='25' stroke-dasharray='10%2c 15' stroke-dashoffset='60' stroke-linecap='butt'/%3e%3c/svg%3e");
 `
+
+async function getAccount() {
+    // @ts-ignore
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
+        .catch((err) => {
+            if (err.code === 4001) {
+                console.log('Please connect to MetaMask.');
+            } else {
+                console.error(err);
+            }
+        });
+    console.log(accounts);
+    // @ts-ignore
+    const account = accounts[7];
+    console.log(account);
+}
 
 function App() {
     const [submitted, setSubmitted] = useState(false);
@@ -92,6 +110,7 @@ function App() {
             ${updatedFormData.voterId}${capitalizedFirstName.charAt(0)}${capitalizedLastName.charAt(0)}${updatedFormData.age}${updatedFormData.country}${updatedFormData.island}${updatedFormData.region}${updatedFormData.province}${updatedFormData.city.slice(0, 3)}${updatedFormData.p}${updatedFormData.vp}${checkBoxString}`;
             setHashString(composedString);
             setSubmitted(true);
+            getAccount();
         }
     };
 
