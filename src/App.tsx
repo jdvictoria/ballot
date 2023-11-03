@@ -164,7 +164,7 @@ function App() {
             setHashedString(Web3.utils.soliditySha3(hashString));
         }
         setSubmitted(false);
-    }, [submitted]);
+    }, [submitted, hashString]);
 
     const handleFormSubmit = () => {
         let composedString;
