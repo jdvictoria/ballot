@@ -31,10 +31,10 @@ function setRegion(accounts, region) {
 
     if (region === 'NCR') {
         // @ts-ignore
-        account = accounts[15];
+        account = accounts[5];
     } else if (region === 'CAR') {
         // @ts-ignore
-        account = accounts[16];
+        account = accounts[4];
     } else if (region === 'I') {
         // @ts-ignore
         account = accounts[1];
@@ -43,43 +43,43 @@ function setRegion(accounts, region) {
         account = accounts[2];
     } else if (region === 'III') {
         // @ts-ignore
-        account = accounts[3];
+        account = accounts[17];
     } else if (region === 'IV-A') {
         // @ts-ignore
-        account = accounts[4];
+        account = accounts[16];
     } else if (region === 'IV-B') {
         // @ts-ignore
-        account = accounts[5];
+        account = accounts[15];
     } else if (region === 'V') {
         // @ts-ignore
-        account = accounts[6];
+        account = accounts[14];
     } else if (region === 'VI') {
         // @ts-ignore
-        account = accounts[7];
+        account = accounts[13];
     } else if (region === 'VII') {
         // @ts-ignore
-        account = accounts[8];
+        account = accounts[12];
     } else if (region === 'VIII') {
         // @ts-ignore
-        account = accounts[9];
+        account = accounts[11];
     } else if (region === 'IX') {
         // @ts-ignore
         account = accounts[10];
     } else if (region === 'X') {
         // @ts-ignore
-        account = accounts[11];
+        account = accounts[9];
     } else if (region === 'XI') {
         // @ts-ignore
-        account = accounts[12];
+        account = accounts[8];
     } else if (region === 'XII') {
         // @ts-ignore
-        account = accounts[13];
+        account = accounts[7];
     } else if (region === 'XIII') {
         // @ts-ignore
-        account = accounts[14];
+        account = accounts[6];
     } else if (region === 'ARMM') {
         // @ts-ignore
-        account = accounts[17];
+        account = accounts[3];
     }
     return account;
 }
@@ -106,6 +106,27 @@ async function deployTransaction(region) {
     console.log('from account ' + fromAccount);
 
     // Deploy Smart Contract
+    // @ts-ignore
+    const transaction = await window.ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [
+            {
+                // @ts-ignore
+                from: accounts[0],
+                to: fromAccount,
+                value: '0x1024',
+                gasLimit: '0x5028',
+                maxPriorityFeePerGas: '0x3b9aca00',
+                maxFeePerGas: '0x2540be400',
+            },
+        ],
+    })
+        .then((txHash) => {
+            console.log('Transaction Hash:', txHash);
+            // You can handle the transaction hash here or update your state accordingly.
+        })
+        .catch((error) => console.error('Transaction Error:', error));
+    console.log('transaction ' + transaction);
 }
 
 function App() {
