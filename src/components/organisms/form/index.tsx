@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from "styled-components";
 
 import {FormHeader} from "../../molecules/header";
@@ -19,12 +19,12 @@ const FormContainer = styled.div`
 `
 
 // @ts-ignore
-export function Form({formData, setFormData, handleFormSubmit, hashString, hashedString}) {
+export function Form({formData, setFormData, handleFormSubmit, hashString, hashedString, transactionString}) {
     return (
         <FormContainer>
             <FormHeader/>
             <FormInput formData={formData} setFormData={setFormData} handleFormSubmit={handleFormSubmit}/>
-            <FormOutput hashString={hashString} hashedString={hashedString}/>
+            <FormOutput hashString={hashString} hashedString={hashedString} transactionString={transactionString}/>
         </FormContainer>
     )
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import JsBarcode from "jsbarcode";
+
+import { MetaMaskButton } from "@metamask/sdk-react-ui";
 
 const SubmissionContainer = styled.div`
   display: flex;
@@ -21,6 +22,24 @@ const TextSection = styled.div`
   width: 100%;
 `
 
+const MetamaskSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  
+  width: 100%;
+`
+
+const GridColumn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+`
+
 const StyledText = styled.text`
   text-align: center;
   
@@ -31,7 +50,7 @@ const StyledText = styled.text`
 `
 
 // @ts-ignore
-export function FormOutput({hashString, hashedString}) {
+export function FormOutput({hashString, hashedString, transactionString}) {
     return (
         <SubmissionContainer>
             <TextSection>
@@ -47,13 +66,17 @@ export function FormOutput({hashString, hashedString}) {
                 <StyledText style={{fontWeight: "bold"}}>
                     {!hashedString ? 'N/A' : hashedString}
                 </StyledText>
-                <StyledText>
-                    Deployment Status:
-                </StyledText>
-                <StyledText style={{fontWeight: "bold"}}>
-                    N/A
-                </StyledText>
             </TextSection>
+            <MetamaskSection>
+                <GridColumn>
+                    <StyledText>
+                        Transaction Hash:
+                    </StyledText>
+                    <StyledText style={{fontWeight: "bold"}}>
+                        {!transactionString ? 'N/A' : transactionString}
+                    </StyledText>
+                </GridColumn>
+            </MetamaskSection>
         </SubmissionContainer>
     )
 }
