@@ -50,7 +50,7 @@ const StyledText = styled.text`
 `
 
 // @ts-ignore
-export function FormOutput({hashString, hashedString, statusString, transactionString}) {
+export function FormOutput({hashString, hashedString, transactionString}) {
     return (
         <SubmissionContainer>
             <TextSection>
