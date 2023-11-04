@@ -29,57 +29,57 @@ function setRegion(accounts, region) {
     // Choose Specific Account
     let account;
 
-    if (region === 'NCR') {
-        // @ts-ignore
-        account = accounts[5];
-    } else if (region === 'CAR') {
-        // @ts-ignore
-        account = accounts[4];
-    } else if (region === 'I') {
+    if (region === 'I') {
         // @ts-ignore
         account = accounts[1];
     } else if (region === 'II') {
         // @ts-ignore
         account = accounts[2];
-    } else if (region === 'III') {
-        // @ts-ignore
-        account = accounts[17];
-    } else if (region === 'IV-A') {
-        // @ts-ignore
-        account = accounts[16];
-    } else if (region === 'IV-B') {
-        // @ts-ignore
-        account = accounts[15];
-    } else if (region === 'V') {
-        // @ts-ignore
-        account = accounts[14];
-    } else if (region === 'VI') {
-        // @ts-ignore
-        account = accounts[13];
-    } else if (region === 'VII') {
-        // @ts-ignore
-        account = accounts[12];
-    } else if (region === 'VIII') {
-        // @ts-ignore
-        account = accounts[11];
-    } else if (region === 'IX') {
-        // @ts-ignore
-        account = accounts[10];
-    } else if (region === 'X') {
-        // @ts-ignore
-        account = accounts[9];
-    } else if (region === 'XI') {
-        // @ts-ignore
-        account = accounts[8];
-    } else if (region === 'XII') {
-        // @ts-ignore
-        account = accounts[7];
-    } else if (region === 'XIII') {
-        // @ts-ignore
-        account = accounts[6];
     } else if (region === 'ARMM') {
         // @ts-ignore
         account = accounts[3];
+    } else if (region === 'CAR') {
+        // @ts-ignore
+        account = accounts[4];
+    } else if (region === 'NCR') {
+        // @ts-ignore
+        account = accounts[5];
+    } else if (region === 'XIII') {
+        // @ts-ignore
+        account = accounts[6];
+    } else if (region === 'XII') {
+        // @ts-ignore
+        account = accounts[7];
+    } else if (region === 'XI') {
+        // @ts-ignore
+        account = accounts[8];
+    } else if (region === 'X') {
+        // @ts-ignore
+        account = accounts[9];
+    } else if (region === 'IX') {
+        // @ts-ignore
+        account = accounts[10];
+    } else if (region === 'VIII') {
+        // @ts-ignore
+        account = accounts[11];
+    } else if (region === 'VII') {
+        // @ts-ignore
+        account = accounts[12];
+    } else if (region === 'VI') {
+        // @ts-ignore
+        account = accounts[13];
+    } else if (region === 'V') {
+        // @ts-ignore
+        account = accounts[14];
+    } else if (region === 'IV-B') {
+        // @ts-ignore
+        account = accounts[15];
+    } else if (region === 'IV-A') {
+        // @ts-ignore
+        account = accounts[16];
+    } else if (region === 'III') {
+        // @ts-ignore
+        account = accounts[17];
     }
     return account;
 }
