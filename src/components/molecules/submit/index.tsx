@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
-import JsBarcode from "jsbarcode";
+
+import { MetaMaskButton } from "@metamask/sdk-react-ui";
 
 const SubmissionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
-  padding-top: 15px;
   
   width: 100%;
   height: 30%;
@@ -23,14 +22,22 @@ const TextSection = styled.div`
   width: 100%;
 `
 
-const ImageSection = styled.div`
+const MetamaskSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  
+  width: 100%;
+`
+
+const GridColumn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+
   width: 100%;
-  height: 40%;
 `
 
 const StyledText = styled.text`
@@ -42,15 +49,8 @@ const StyledText = styled.text`
   font-size: 17px;
 `
 
-const StyledSVG = styled.svg`
-  width: 400px;
-  height: 125px;
-`
-
 // @ts-ignore
-export function FormOutput({hashString, hashedString}) {
-    JsBarcode(".barcode").init();
-
+export function FormOutput({hashString, hashedString, transactionString}) {
     return (
         <SubmissionContainer>
             <TextSection>
@@ -67,14 +67,16 @@ export function FormOutput({hashString, hashedString}) {
                     {!hashedString ? 'N/A' : hashedString}
                 </StyledText>
             </TextSection>
-            <ImageSection>
-                <StyledSVG className="barcode"
-                     jsbarcode-format="CODE128"
-                     jsbarcode-value={hashedString}
-                     jsbarcode-textmargin="0"
-                     jsbarcode-fontoptions="bold">
-                </StyledSVG>
-            </ImageSection>
+            <MetamaskSection>
+                <GridColumn>
+                    <StyledText>
+                        Transaction Hash:
+                    </StyledText>
+                    <StyledText style={{fontWeight: "bold"}}>
+                        {!transactionString ? 'N/A' : transactionString}
+                    </StyledText>
+                </GridColumn>
+            </MetamaskSection>
         </SubmissionContainer>
     )
 }

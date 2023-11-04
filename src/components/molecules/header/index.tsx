@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 
-// @ts-ignore
-import QRCode from '../../../assets/sample-qr.png';
+import { MetaMaskButton } from "@metamask/sdk-react-ui";
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -19,6 +18,8 @@ const TextSection = styled.div`
   align-items: flex-start;
   flex-direction: column;
   
+  padding-left: 25px;
+  
   width: 75%;
 `
 
@@ -32,8 +33,13 @@ const StyledText = styled.text`
   font-size: 18px;
 `
 
-const StyledImage = styled.img`
-  width: 15%;
+const GridColumn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  width: 50%;
 `
 
 export function FormHeader() {
@@ -50,7 +56,12 @@ export function FormHeader() {
                     Type: National Election
                 </StyledText>
             </TextSection>
-            <StyledImage src={QRCode} alt={'Ballot QR'}/>
+            <GridColumn>
+                <StyledText>
+                    Connection Status:
+                </StyledText>
+                <MetaMaskButton theme={"light"} color="white"></MetaMaskButton>
+            </GridColumn>
         </HeaderContainer>
     )
 }
