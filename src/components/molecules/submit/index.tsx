@@ -37,7 +37,7 @@ const GridColumn = styled.div`
   align-items: center;
   flex-direction: column;
 
-  width: 50%;
+  width: 100%;
 `
 
 const StyledText = styled.text`
@@ -68,14 +68,6 @@ export function FormOutput({hashString, hashedString, statusString, transactionS
                 </StyledText>
             </TextSection>
             <MetamaskSection>
-                <GridColumn>
-                    <StyledText>
-                        Deployment Status:
-                    </StyledText>
-                    <StyledText style={{fontWeight: "bold"}}>
-                        {!statusString ? 'Undeployed' : statusString}
-                    </StyledText>
-                </GridColumn>
                 <GridColumn>
                     <StyledText>
                         Transaction Hash:

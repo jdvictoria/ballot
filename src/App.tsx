@@ -85,7 +85,7 @@ function setRegion(accounts, region) {
 }
 
 // @ts-ignore
-async function deployTransaction(region) {
+async function deployTransaction(data, region, setTransactionString) {
     // Fetch Accounts
     // @ts-ignore
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -114,8 +114,9 @@ async function deployTransaction(region) {
                 // @ts-ignore
                 from: accounts[0],
                 to: fromAccount,
-                value: '0x1024',
-                gasLimit: '0x5028',
+                data: data,
+                value: '0x8500',
+                gasLimit: '0x10000',
                 maxPriorityFeePerGas: '0x3b9aca00',
                 maxFeePerGas: '0x2540be400',
             },
@@ -123,17 +124,16 @@ async function deployTransaction(region) {
     })
         .then((txHash) => {
             console.log('Transaction Hash:', txHash);
-            // You can handle the transaction hash here or update your state accordingly.
+            setTransactionString(txHash);
         })
         .catch((error) => console.error('Transaction Error:', error));
-    console.log('transaction ' + transaction);
 }
 
 function App() {
     const [submitted, setSubmitted] = useState(false);
     const [hashString, setHashString] = useState('N/A');
     const [hashedString, setHashedString] = useState('N/A');
-    const [statusString, setStatusString] = useState('Undeployed');
+    const [statusString, setStatusString] = useState(false);
     const [transactionString, setTransactionString] = useState('N/A');
 
     const [formData, setFormData] = useState({
@@ -202,7 +202,7 @@ function App() {
 
             // Metamask Backend
             // @ts-ignore
-            deployTransaction(updatedFormData.region);
+            deployTransaction(hashedString, updatedFormData.region, setTransactionString);
         }
     };
 
