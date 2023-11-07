@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 
-import { MetaMaskButton } from "@metamask/sdk-react-ui";
-
 const SubmissionContainer = styled.div`
   display: flex;
   justify-content: center;
